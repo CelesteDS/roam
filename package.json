@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "db:create": "createdb roam_db",
-    "db:reset": "dropdb roam_db; npm run db:create && psql roam_db < ./src/model/db/schema.sql",
+    "db:reset": "dropdb roam_db; npm run db:create && psql roam_db < ./src/model/db/schema.sql && npm run db:seed",
+    "db:seed": "psql roam_db < ./src/model/db/seedData.sql",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,6 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "connect-pg-simple": "^4.2.1",
+    "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "method-override": "^2.3.10",
