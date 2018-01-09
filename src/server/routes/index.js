@@ -1,12 +1,21 @@
 const router = require('express').Router()
+const { addUser, verifyUser, updateProfile } = require('../../model/db/users')
 
-const postRoutes = require('./posts')
-const userRoutes = require('./users')
-
-router.get('/', (req, res) => {
-  res.render(/*ejs goes here*/)
+router.get('/', (req, res, next) => {
+  res.render('index')
 })
 
-router.use(postRoutes)
-router.use(userRoutes)
+router.get('/sign-up', (req, res, next) => {
+  res.send("signup route"/*signup form ejs goes here*/)
+  next()
+})
+
+router.get('/log-in', (req, res, next) => {
+  res.render(/*log in form ejs goes here*/)
+  next()
+})
+
+
+
+
 module.exports = router

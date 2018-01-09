@@ -6,7 +6,7 @@ const pgp = require('pg-promise')({ /* default initalization options */})
 const pgSession = require('connect-pg-simple')
 const dotenv = require('dotenv').config()
 
-// const routes = require('./server/routes')
+const routes = require('./server/routes')
 
 const connectionString = process.env.DATABASE_URL
 const db = pgp({ connectionString })
@@ -28,7 +28,10 @@ app.use(session({
   cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 },
 }))
 
-// app.use(routes)
+//app.use(routes.indexRoutes)
+// app.use(routes.postsRoutes)
+app.use(routes)
+
 
 
 

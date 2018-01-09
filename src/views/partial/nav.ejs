@@ -1,0 +1,15 @@
+<nav>
+  <h2>Zwerven</h2>
+  <% if(loggedIn()) { %>
+    <form action="/logout" method="get">
+      <button type="submit" name="logout">Logout</button>
+    </form>
+  <% } else { %>
+    <form action="/login" method="get">
+      <button type="submit" name="login">Login</button>
+    </form>
+    <form action="/signup" method="get">
+      <button type="submit" name="signup">Signup</button>
+    </form>
+  <% } %>
+</nav>
