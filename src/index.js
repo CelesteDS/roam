@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 const methodOverride = require('method-override')
-const pgp = require('pg-promise')({ /* default initalization options */ })
+const pgp = require('pg-promise')({ /* default initalization options */})
 const pgSession = require('connect-pg-simple')
 const dotenv = require('dotenv').config()
 
@@ -20,7 +20,6 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json())
-console.log('logging port' + process.env.PORT)
 app.use(session({
   store: new (require('connect-pg-simple')(session))(),
   secret: process.env.SECRET,
@@ -38,3 +37,5 @@ const port = process.env.PORT || 3000
 app.listen(port, () => {
   console.log(`Listening on port ${port}`)
 })
+
+module.exports = db
