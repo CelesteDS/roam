@@ -1,6 +1,6 @@
 <nav>
   <h2>Zwerven</h2>
-  <% if(loggedIn()) { %>
+  <% if(loggedIn) { %>
     <form action="/logout" method="get">
       <button type="submit" name="logout">Logout</button>
     </form>
