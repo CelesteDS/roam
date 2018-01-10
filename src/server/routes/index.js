@@ -8,16 +8,45 @@ router.get('/', (req, res, next) => {
   res.render('index', { loggedIn } )
 })
 
-router.get('/sign-up', (req, res, next) => {
-  res.send("signup route"/*signup form ejs goes here*/)
+router.get('/signup', (req, res, next) => {
+  res.render('signup')
   next()
 })
 
-router.get('/log-in', (req, res, next) => {
-  res.render(/*log in form ejs goes here*/)
+router.post('/signup', (req, res, next) => {
+  const { fullName, email, password, city } = req.body
+  addUser(fullName, email, password, city)
+    .then((user) => {
+      if (user) {
+        req.session.user_id = user.id
+        return res.redirect(`/profile/${user.id}`)
+      }
+      next()
+    })
+    .catch(console.error)
+})
+
+router.get('/login', (req, res, next) => {
+  const { email, password } = req.body
+  verifyUser(email)
+    .then((user) => {
+      //later use bcrypt compare :)
+      if (user.password === password) {
+        req.session.user_id = user.id
+        return res.redirect(`/profile/${user.id}`)
+      } else {
+        return res.redirect('/login')
+      }
+    })
+    .catch(console.error)
   next()
 })
 
+router.get('/logout', (req, res, next) => {
+  req.session.destroy()
+  res.redirect('/')
+  next()
+})
 
 
 
