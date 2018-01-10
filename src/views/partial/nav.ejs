@@ -2,14 +2,14 @@
   <h2>Zwerven</h2>
   <% if(loggedIn) { %>
     <form action="/logout" method="get">
-      <button type="submit" name="logout">Logout</button>
+      <button type="submit" >Logout</button>
     </form>
   <% } else { %>
     <form action="/login" method="get">
-      <button type="submit" name="login">Login</button>
+      <button type="submit" >Login</button>
     </form>
     <form action="/signup" method="get">
-      <button type="submit" name="signup">Signup</button>
+      <button type="submit">Signup</button>
     </form>
   <% } %>
 </nav>

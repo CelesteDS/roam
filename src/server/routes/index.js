@@ -27,6 +27,11 @@ router.post('/signup', (req, res, next) => {
 })
 
 router.get('/login', (req, res, next) => {
+  res.render('login')
+  next()
+})
+
+router.post('/login', (req, res, next) => {
   const { email, password } = req.body
   verifyUser(email)
     .then((user) => {
@@ -34,12 +39,13 @@ router.get('/login', (req, res, next) => {
       if (user.password === password) {
         req.session.user_id = user.id
         return res.redirect(`/profile/${user.id}`)
+
       } else {
         return res.redirect('/login')
       }
+      next()
     })
     .catch(console.error)
-  next()
 })
 
 router.get('/logout', (req, res, next) => {
