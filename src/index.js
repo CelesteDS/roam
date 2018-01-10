@@ -2,14 +2,15 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 const methodOverride = require('method-override')
-const pgp = require('pg-promise')({ /* default initalization options */})
 const pgSession = require('connect-pg-simple')
 const dotenv = require('dotenv').config()
 
-// const routes = require('./server/routes')
+const routes = require('./server/routes')
+const db = require('./model/db/db')
 
-const connectionString = process.env.DATABASE_URL
-const db = pgp({ connectionString })
+
+console.log('db keys are ' + Object.keys(db))
+
 
 const app = express()
 
@@ -28,7 +29,10 @@ app.use(session({
   cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 },
 }))
 
-// app.use(routes)
+//app.use(routes.indexRoutes)
+// app.use(routes.postsRoutes)
+app.use(routes)
+
 
 
 
@@ -37,5 +41,4 @@ const port = process.env.PORT || 3000
 app.listen(port, () => {
   console.log(`Listening on port ${port}`)
 })
-
-module.exports = db
+console.log('above export db keys are ' + Object.keys(db))
