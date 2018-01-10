@@ -1,5 +1,7 @@
 const router = require('express').Router()
-const { addUser, verifyUser, updateProfile } = require('../../model/db/users')
+
+const { addUser, verifyUser, updateProfile, userById,  } = require('../../model/db/users')
+const { addPost, getPostsByUserId } = require('../../model/db/posts')
 // const { sessionChecker, loggedIn } = require('./utils')
 
 router.get('/', (req, res, next) => {
@@ -54,6 +56,20 @@ router.get('/logout', (req, res, next) => {
   next()
 })
 
+router.get('/profile/:id', (req, res, next) => {
+  let userProfile = null
+  const loggedIn = (req.session.user_id === undefined) ? false : true
+  const id = (req.params.id)
+  userById(id)
+  .then((user) => {
+    userProfile = user
+    getPostsByUserId(id)
+      .then((posts) => {
+        res.render('profile', { user, loggedIn, posts })
+        next()
+      })
+  })
+})
 
 
 module.exports = router

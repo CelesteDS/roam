@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt')
+
 const sessionChecker = (request, response, next) => {
   const sid = request.sessionId
 }
@@ -9,5 +11,6 @@ const loggedIn = (request, response, next) => {
     return true
   }
 }
+
 
 module.exports = { sessionChecker, loggedIn }

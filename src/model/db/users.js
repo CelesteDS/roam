@@ -1,7 +1,5 @@
 const db = require('./db')
-console.log('in users.js outside adduser db keys are ' + Object.keys(db))
 const addUser = (fullname, email, password, city) => {
-  console.log('in addUser db keys are ' + Object.keys(db))
   const sql = 'INSERT INTO users (fullname, email, password, city) VALUES ($1, $2, $3, $4) RETURNING *'
   return db.one(sql, [fullname, email, password, city])
 }
@@ -16,4 +14,9 @@ const updateProfile = (id, fullname, email, password, city) => {
   return db.one(sql, [id, fullname, email, password, city])
 }
 
-module.exports = { addUser, verifyUser, updateProfile }
+const userById = (id) => {
+  const sql = 'SELECT fullname, city, join_date FROM users WHERE id = $1'
+  return db.one(sql, id)
+}
+
+module.exports = { addUser, verifyUser, updateProfile, userById }

@@ -1,0 +1,15 @@
+<%- include ./partial/header.ejs %>
+  <div class="basic-info">
+    <span>Name: <%= user.fullname %></span>
+    <span>Date Joined: <%= user.join_date %></span>
+    <span>Current City: <%= user.city %></span>
+  </div>
+  <div class="post-info">
+    <% posts.forEach((post) => { %>
+      <%= post.title %>
+      <%= post.city %>
+      <%= post.content.substring(0, 140) %>
+    <% }) %>
+  </div>
+
+<%- include ./partial/footer.ejs %>
