@@ -8,10 +8,6 @@ const dotenv = require('dotenv').config()
 const routes = require('./server/routes')
 const db = require('./model/db/db')
 
-
-console.log('db keys are ' + Object.keys(db))
-
-
 const app = express()
 
 app.set('view engine', 'ejs')
@@ -41,4 +37,3 @@ const port = process.env.PORT || 3000
 app.listen(port, () => {
   console.log(`Listening on port ${port}`)
 })
-console.log('above export db keys are ' + Object.keys(db))

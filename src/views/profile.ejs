@@ -1,16 +1,22 @@
 <%- include ./partial/header.ejs %>
   <div class="basic-info">
-    <span>Name: <% if (ownPage) { %> <span contenteditable><%}%><%= user.fullname %><% if (ownPage) { %> </span> <%}%></span>
-    <span>Date Joined: <%= user.join_date %></span>
-    <span>Current City:<% if (ownPage) { %> <span contenteditable><%}%><%= user.city %><% if (ownPage) { %> </span> <%}%> </span>
+    <div id='editable-profile'>
+      <div>Name: <span id="fullname"><%= user.fullname %></span></div>
+      <div>Current City: <span id="city"><%= user.city %></span> </div>
+    </div>
+    <div>Date Joined: <%= user.join_date %></div>
+
     <% if (ownPage){ %>
-      <button type="button" id="edit-save">Edit Profile</button>
+      <button type="submit" formaction='/edit' id="edit-save">Edit Profile</button>
+      <% } %>
   </div>
   <div class="post-info">
     <% posts.forEach((post) => { %>
-      <%= post.title %>
-      <%= post.city %>
-      <%= post.content.substring(0, 140) %>
+      <div>
+        <%= post.title %>
+        <%= post.city %>
+        <%= post.content.substring(0, 140) %>
+      </div>
     <% }) %>
   </div>
 

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.js",
+    "start": "nodemon src/server.js",
     "db:create": "createdb roam_db",
     "db:reset": "dropdb roam_db; npm run db:create && psql roam_db < ./src/model/db/schema.sql && npm run db:seed",
     "db:seed": "psql roam_db < ./src/model/db/seedData.sql",
