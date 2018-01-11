@@ -4,7 +4,7 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   fullname VARCHAR(256) NOT NULL,
   email VARCHAR(256) NOT NULL UNIQUE,
-  password VARCHAR(256) NOT NULL,
+  password VARCHAR(72) NOT NULL,
   city VARCHAR(256),
   join_date DATE DEFAULT NOW()
 );

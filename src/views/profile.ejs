@@ -1,0 +1,17 @@
+<%- include ./partial/header.ejs %>
+  <div class="basic-info">
+    <span>Name: <% if (ownPage) { %> <span contenteditable><%}%><%= user.fullname %><% if (ownPage) { %> </span> <%}%></span>
+    <span>Date Joined: <%= user.join_date %></span>
+    <span>Current City:<% if (ownPage) { %> <span contenteditable><%}%><%= user.city %><% if (ownPage) { %> </span> <%}%> </span>
+    <% if (ownPage){ %>
+      <button type="button" id="edit-save">Edit Profile</button>
+  </div>
+  <div class="post-info">
+    <% posts.forEach((post) => { %>
+      <%= post.title %>
+      <%= post.city %>
+      <%= post.content.substring(0, 140) %>
+    <% }) %>
+  </div>
+
+<%- include ./partial/footer.ejs %>
