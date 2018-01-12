@@ -65,23 +65,27 @@ router.get('/logout', (req, res, next) => {
 
 router.get('/profile/:id', (req, res, next) => {
   const loggedIn = (req.session.user_id === undefined) ? false : true
-  console.log('id is ' + req.params.id)
-  console.log('id type is '+ typeof req.params.id)
-  console.log('all params: ' + Object.keys(req.params) + Object.values(req.params))
   const id = Number(req.params.id)
-  console.log('in variable it is type of  : ' + typeof id)
   const ownPage = (req.session.user_id === id) ? true : false
   userById(id)
   .then((user) => {
     getPostsByUserId(id)
       .then((posts) => {
         return res.render('profile', { user, loggedIn, posts, ownPage })
-      //  next()
+        next()
       })
-      .catch(console.error)
   })
   .catch(console.error)
 })
 
+router.post('/profile-update', (req, res) => {
+  const { newName, newCity } = req.body
+  console.log("(ᗒᗣᗕ) (•̀o•́)ง req.body", req.body )
+  const id = req.session.user_id
+  updateProfile(id, newName, newCity)
+    .then((result) => {
+      return res.send(result)
+    })
+})
 
 module.exports = router
