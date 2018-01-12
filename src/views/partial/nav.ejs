@@ -1,15 +1,16 @@
-<nav>
-  <h2>Zwerven</h2>
+<nav class="navigation">
+  <h2 class="site-title">Zwerven</h2>
+  <p>Not all who wander are lost</p>
   <% if(loggedIn) { %>
-    <form action="/logout" method="get">
-      <button type="submit" >Logout</button>
-    </form>
-  <% } else { %>
-    <form action="/login" method="get">
-      <button type="submit" >Login</button>
-    </form>
-    <form action="/signup" method="get">
-      <button type="submit">Signup</button>
-    </form>
+      <form action="/logout" method="get">
+        <button type="submit" >Logout</button>
+      </form>
+      <% } else { %>
+        <form action="/login" method="get">
+          <button type="submit" >Login</button>
+        </form>
+        <form action="/signup" method="get">
+          <button type="submit">Signup</button>
+        </form>
   <% } %>
 </nav>
