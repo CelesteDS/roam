@@ -1,7 +1,7 @@
 const router = require('express').Router()
 
 const { addUser, verifyUser, updateProfile, userById,  } = require('../../model/db/users')
-const { addPost, getPostsByUserId } = require('../../model/db/posts')
+const { addPost, getPostsByUserId, getPostById } = require('../../model/db/posts')
  const { sessionChecker, hashPassword, comparePassword } = require('./utils')
 
 router.get('/', (req, res, next) => {
@@ -80,11 +80,17 @@ router.get('/profile/:id', (req, res, next) => {
 
 router.post('/profile-update', (req, res) => {
   const { newName, newCity } = req.body
-  console.log("(ᗒᗣᗕ) (•̀o•́)ง req.body", req.body )
   const id = req.session.user_id
   updateProfile(id, newName, newCity)
     .then((result) => {
       return res.send(result)
+    })
+})
+
+router.get('/post/:id', (req, res) => {
+  getPostById(Number(req.params.id))
+    .then((post) => {
+      res.render('post', { post })
     })
 })
 
