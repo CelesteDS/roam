@@ -12,7 +12,7 @@
   </div>
   <div class="post-info">
     <% posts.forEach((post) => { %>
-      <div>
+      <div id=<%= post.id %>>
         <%= post.title %>
         <%= post.city %>
         <%= post.content.substring(0, 140) %>
