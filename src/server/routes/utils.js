@@ -5,7 +5,7 @@ const sessionChecker = (request, response, next) => {
 }
 
 const loggedIn = (request, response, next) => {
-  if (!request.session.user_id) {
+  if (!request.session.user) {
     return false
   } else {
     return true

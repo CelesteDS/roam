@@ -9,10 +9,11 @@ const verifyUser = (email) => {
   return db.one(sql, email)
 }
 
-const updateProfile = (id, fullname, city) => {
-  const sql = 'UPDATE users SET fullname = $2, city = $3 WHERE id= $1 RETURNING *'
-  return db.one(sql, [id, fullname, city])
+const updateProfile = (id, newName, newCity) => {
+  const sql = 'UPDATE users SET fullname = $1, city = $2 WHERE id= $3 RETURNING *'
+  return db.oneOrNone(sql, [newName, newCity, id])
     .then((result) => {
+      console.log("(ᗒᗣᗕ) (•̀o•́)ง result", result )
       if(result) return { success: true, message: 'Your profile is updated! yay' }
       return { success: false, message: 'You did something wonkey... try again'}
     })

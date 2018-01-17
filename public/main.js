@@ -5,7 +5,7 @@ const getProfileElements = () => {
   const city = document.getElementById('city')
   return { name, city }
 }
-const editClick =  (event) => {
+const editClick =  function (event)  {
   editButton.innerHTML = 'Save Profile'
   const { name, city } = getProfileElements()
   const currName = name.innerHTML
@@ -21,9 +21,11 @@ const saveClick = function (event) {
   const newCity = city.value
   name.outerHTML = `<span id="fullname">${newName}</span>`
   city.outerHTML = `<span id="city">${newCity}</span>`
+  event.preventDefault()
   fetch('/profile-update', {
-    method: 'post',
+    method: 'PUT',
     headers: { 'Content-type': 'application/json' },
+    credentials: 'same-origin',
     body: JSON.stringify({ newName, newCity }),
   })
   .then(result => result.json())

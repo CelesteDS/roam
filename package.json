@@ -1,14 +1,14 @@
 {
-  "name": "roam-with-celeste",
+  "name": "roam",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
     "start:dev": "nodemon src/server.js",
-    "db:create": "createdb roam_db",
-    "db:reset": "dropdb roam_db; npm run db:create && psql roam_db < ./src/model/db/schema.sql && npm run db:seed",
-    "db:seed": "psql roam_db < ./src/model/db/seedData.sql",
+    "db:create": "createdb roam",
+    "db:reset": "dropdb roam; npm run db:create && psql roam < ./src/model/db/schema.sql && npm run db:seed",
+    "db:seed": "psql roam < ./src/model/db/seedData.sql",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -24,5 +24,8 @@
     "express-session": "^1.15.6",
     "method-override": "^2.3.10",
     "pg-promise": "^7.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.11"
   }
 }
