@@ -1,8 +1,8 @@
 const router = require('express').Router()
-
+const moment = require('moment')
 const { addUser, verifyUser, updateProfile, userById,  } = require('../../model/db/users')
 const { addPost, getPostsByUserId, getPostById } = require('../../model/db/posts')
- const { sessionChecker, hashPassword, comparePassword } = require('./utils')
+const { sessionChecker, hashPassword, comparePassword } = require('./utils')
 
 router.get('/', (req, res) => {
   const loggedIn = (req.session.user === undefined) ? false : true
@@ -21,7 +21,6 @@ router.post('/signup', (req, res) => {
       .then((user) => {
         if (user) {
           req.session.user = user
-          console.log("(ᗒᗣᗕ) (•̀o•́)ง req.session", req.session.user.id)
           return res.redirect(`/profile/${user.id}`)
         }
 
@@ -67,7 +66,8 @@ router.get('/profile/:id', (req, res) => {
   .then((user) => {
     getPostsByUserId(id)
       .then((posts) => {
-        return res.render('profile', { user, loggedIn, posts, ownPage })
+        let signupDate = moment(user.join_date).format("dddd, MMMM Do YYYY")
+        return res.render('profile', { user, loggedIn, posts, ownPage, signupDate })
 
       })
   })
