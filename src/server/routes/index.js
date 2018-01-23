@@ -12,7 +12,6 @@ router.get('/logout', (req, res) => {
   req.session.destroy(err => console.log)
   res.clearCookie('connect.sid')
   res.redirect('/')
-
 })
 
 router.use('/', authRoutes)

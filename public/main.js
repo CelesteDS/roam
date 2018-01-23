@@ -5,7 +5,7 @@ const getProfileElements = () => {
   const city = document.getElementById('city')
   return { name, city }
 }
-const editClick =  function (event)  {
+const editClick = function (event) {
   editProfileBtn.innerHTML = 'Save Profile'
   const { name, city } = getProfileElements()
   const currName = name.innerHTML
@@ -28,13 +28,13 @@ const saveClick = function (event) {
     credentials: 'same-origin',
     body: JSON.stringify({ newName, newCity }),
   })
-  .then(result => result.json())
-  .then(console.log)
+    .then(result => result.json())
+    .then(console.log)
 }
 
-if(editProfileBtn) {
+if (editProfileBtn) {
   editProfileBtn.addEventListener('click', function (event) {
-    if(this.innerHTML.startsWith('E')){
+    if (this.innerHTML.startsWith('E')) {
       editClick(event)
     } else {
       saveClick(event)
