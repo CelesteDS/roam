@@ -1,4 +1,4 @@
-const editButton = document.getElementById('edit-save')
+const editProfileBtn = document.getElementById('edit-save')
 
 const getProfileElements = () => {
   const name = document.getElementById('fullname')
@@ -6,7 +6,7 @@ const getProfileElements = () => {
   return { name, city }
 }
 const editClick =  function (event)  {
-  editButton.innerHTML = 'Save Profile'
+  editProfileBtn.innerHTML = 'Save Profile'
   const { name, city } = getProfileElements()
   const currName = name.innerHTML
   const currCity = city.innerHTML
@@ -16,7 +16,7 @@ const editClick =  function (event)  {
 
 const saveClick = function (event) {
   const { name, city } = getProfileElements()
-  editButton.innerHTML = 'Edit Profile'
+  editProfileBtn.innerHTML = 'Edit Profile'
   const newName = name.value
   const newCity = city.value
   name.outerHTML = `<span id="fullname">${newName}</span>`
@@ -32,10 +32,12 @@ const saveClick = function (event) {
   .then(console.log)
 }
 
-editButton.addEventListener('click', function (event) {
+if(editProfileBtn) {
+  editProfileBtn.addEventListener('click', function (event) {
     if(this.innerHTML.startsWith('E')){
       editClick(event)
     } else {
       saveClick(event)
     }
-})
+  })
+}

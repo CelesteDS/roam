@@ -18,6 +18,12 @@ CREATE TABLE posts (
   content TEXT
 );
 
+CREATE TABLE cities (
+  id SERIAL PRIMARY KEY,
+  
+
+)
+
 DROP TABLE IF EXISTS session;
 CREATE TABLE session (
   sid varchar NOT NULL COLLATE "default",

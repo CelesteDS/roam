@@ -1,16 +1,16 @@
 const bcrypt = require('bcrypt')
 
-const sessionChecker = (request, response, next) => {
-  const sid = request.sessionId
+const sessionChecker = (req, res, next) => {
+  const sid = req.sessionId
 }
 
-const loggedIn = (request, response, next) => {
-  if (!request.session.user) {
-    return false
-  } else {
-    return true
+const loggedIn = (req, res, next) => {
+  if (req.session.user) {
+    res.locals.loggedIn = true
   }
+  next()
 }
+
 
 /**
  * hashes password using bcrypt

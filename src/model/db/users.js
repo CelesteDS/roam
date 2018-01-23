@@ -19,9 +19,9 @@ const updateProfile = (id, newName, newCity) => {
     .catch(err => Object({ success: false, message: err.message }))
 }
 
-const userById = (id) => {
+const getUserById = (id) => {
   const sql = 'SELECT fullname, city, join_date FROM users WHERE id = $1'
   return db.one(sql, id)
 }
 
-module.exports = { addUser, verifyUser, updateProfile, userById }
+module.exports = { addUser, verifyUser, updateProfile, getUserById }
