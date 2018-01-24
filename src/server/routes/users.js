@@ -6,7 +6,7 @@ const { getPostsByUserId } = require('../../model/db/posts')
 
 router.get('/profile/:id', (req, res) => {
   const id = Number(req.params.id)
-  const ownPage = (req.session.user.id === id)
+  const ownPage = (req.session.user.id === id) ? true : false
 
   getUserById(id)
     .then((user) => {

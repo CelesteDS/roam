@@ -1,4 +1,5 @@
 const db = require('./db')
+
 const addUser = (fullname, email, password, current_city) => {
   const sql = 'INSERT INTO users (fullname, email, password, current_city) VALUES ($1, $2, $3, $4) RETURNING *'
   return db.one(sql, [fullname, email, password, current_city])

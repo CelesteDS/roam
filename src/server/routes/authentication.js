@@ -20,7 +20,8 @@ router.post('/signup', (req, res) => {
       .then((user) => {
         if (user) {
           req.session.user = user
-          return res.redirect(`/profile/${user.id}`)
+          const userId = req.session.user.id
+          return res.redirect(`/profile/${userId}`)
         }
       })
       .catch(console.error)
