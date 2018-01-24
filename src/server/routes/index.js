@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
-  req.session.destroy(err => console.log)
+  req.session.destroy(err => console.log(err))
   res.clearCookie('connect.sid')
   res.redirect('/')
 })
