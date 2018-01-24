@@ -13,10 +13,10 @@ router.get('/signup', (req, res) => {
 
 router.post('/signup', (req, res) => {
   const {
-    fullName, email, password, city,
+    fullName, email, password, current_city,
   } = req.body
   hashPassword(password).then((hashedPassword) => {
-    addUser(fullName, email, hashedPassword, city)
+    addUser(fullName, email, hashedPassword, current_city)
       .then((user) => {
         if (user) {
           req.session.user = user
