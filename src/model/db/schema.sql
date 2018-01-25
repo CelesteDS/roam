@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS session CASCADE;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
-  fullname VARCHAR(256) NOT NULL,
+  full_name VARCHAR(256) NOT NULL,
   email VARCHAR(256) NOT NULL UNIQUE,
   password VARCHAR(72) NOT NULL,
   current_city VARCHAR(256),
@@ -14,7 +14,7 @@ CREATE TABLE users (
 
 CREATE TABLE cities (
   id SERIAL PRIMARY KEY,
-  city_title VARCHAR(256) NOT NULL,
+  name VARCHAR(256) NOT NULL,
   img_url VARCHAR(256) NOT NULL
 );
 
@@ -24,9 +24,8 @@ CREATE TABLE posts (
   author_id INTEGER REFERENCES users(id),
   city_id INTEGER REFERENCES cities(id),
   content TEXT,
-  post_date DATE DEFAULT NOW()
+  date DATE DEFAULT NOW()
 );
-
 
 CREATE TABLE session (
   sid varchar NOT NULL COLLATE "default",

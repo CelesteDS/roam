@@ -1,13 +1,13 @@
-INSERT INTO users (fullname, email, password, current_city)
+INSERT INTO users (full_name, email, password, current_city)
 VALUES ('Sarah smith', 'me@me.com', '$2a$10$IRaMmRQXxMDt0izj3N6U4eg/jcKp3XcuLUkjnFwIF1al1fhKkP/..', 'Oakland');
 
-INSERT INTO users (fullname, email, password, current_city)
+INSERT INTO users (full_name, email, password, current_city)
 VALUES ('Jane Villanueva', 'jane@jane.com', '$2a$10$8uJrtHQ6VNmu712P4efAvejIm5nNVYYinP.8sYOP1wcJ7cpJJ3/76', 'Miami');
 
-INSERT INTO cities (city_title, img_url)
+INSERT INTO cities (name, img_url)
 VALUES ('Oakland', 'https://c1.staticflickr.com/8/7147/6474835123_6a08f846be_b.jpg');
 
-INSERT INTO cities (city_title, img_url)
+INSERT INTO cities (name, img_url)
 VALUES ('Miami','https://grist.files.wordpress.com/2017/08/miami.jpg?w=1024&h=576&crop=1');
 
 
