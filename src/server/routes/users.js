@@ -12,7 +12,7 @@ router.get('/profile/:id', (req, res) => {
     .then((user) => {
       getPostsByUserId(id)
         .then((posts) => {
-          const signupDate = moment(user.join_date).format('dddd, MMMM Do YYYY')
+          const signupDate = moment(user.joined_at).format('dddd, MMMM Do YYYY')
           res.render('profile', {
             user, posts, ownPage, signupDate,
           })

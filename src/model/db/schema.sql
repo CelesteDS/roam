@@ -9,7 +9,7 @@ CREATE TABLE users (
   email VARCHAR(256) NOT NULL UNIQUE,
   password VARCHAR(72) NOT NULL,
   current_city VARCHAR(256),
-  join_date DATE DEFAULT NOW()
+  joined_at DATE DEFAULT NOW()
 );
 
 CREATE TABLE cities (

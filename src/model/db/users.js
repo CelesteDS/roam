@@ -21,7 +21,7 @@ const updateProfile = (id, newName, newCity) => {
 }
 
 const getUserById = (id) => {
-  const sql = 'SELECT fullname, current_city, join_date FROM users WHERE id = $1'
+  const sql = 'SELECT fullname, current_city, joined_at FROM users WHERE id = $1'
   return db.one(sql, id)
 }
 
