@@ -16,7 +16,7 @@ const getPostById = (id) => {
 }
 
 const getPostsByCityId = (cityId) => {
-  const sql = 'SELECT posts.title, posts.content, posts.date, users.full_name, cities.name FROM posts JOIN cities ON posts.city_id = cities.id JOIN users ON posts.author_id = users.id WHERE posts.city_id = $1 ORDER BY date DESC'
+  const sql = 'SELECT posts.id, posts.title, posts.content, posts.date, users.full_name, cities.name, cities.img_url, cities.id AS city_id FROM posts JOIN cities ON posts.city_id = cities.id JOIN users ON posts.author_id = users.id WHERE posts.city_id = $1 ORDER BY date DESC'
   return db.many(sql, cityId)
 }
 

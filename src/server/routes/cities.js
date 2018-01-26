@@ -1,4 +1,6 @@
 const router = require('express').Router()
+const moment = require('moment')
+
 const { getPostsByCityId } = require('../../model/db/posts')
 
 router.get('/cities/:id', (req, res) => {
@@ -6,12 +8,12 @@ router.get('/cities/:id', (req, res) => {
 
   getPostsByCityId(cityId)
     .then((postInfo) => {
-      res.render('/cities', { postInfo })
+      postInfo.forEach((element) => {
+        element.date = moment(element.date).format('dddd, MMMM Do YYYY')
+      })
+      res.render('cities', { postInfo })
     })
-    .catch((error) => {
-      console.error
-      res.send(error)
-    })
+    .catch(console.error)
 })
 
 module.exports = router

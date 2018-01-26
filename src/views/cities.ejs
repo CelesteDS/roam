@@ -1,0 +1,23 @@
+<%- include ./partial/header.ejs %>
+<%- include ./partial/nav.ejs %>
+
+<div class="page-column">
+  <div class="city-info">
+    <div class="post-info">
+      <a href="/posts/new?city_id=<%= postInfo[0].city_id %>"><button class="new-post" name="button">New Post</button></a>
+      <div class="city-image">
+        <img src=<%= postInfo[0].img_url %>>
+      </div>
+      <% postInfo.forEach((post) => { %>
+        <div id=<%= post.id %>>
+          <%= post.name %>
+          <%= post.full_name %>
+          <a href='/posts/<%= post.id %>'><%= post.title %></a>
+          <%= post.date %>
+          <%= post.content.substring(0, 140) %>
+        </div>
+      <% }) %>
+    </div>
+
+
+<%- include ./partial/footer.ejs %>

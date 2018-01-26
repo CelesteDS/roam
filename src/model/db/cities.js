@@ -11,4 +11,8 @@ const getAllCities = () => {
   return db.many(sql)
 }
 
-module.exports = { getPostsByCityId, getAllCities }
+const getCityById = (id) => {
+  const sql = 'SELECT * FROM cities WHERE id = $1'
+  return db.one(sql, id)
+}
+module.exports = { getPostsByCityId, getAllCities, getCityById }
