@@ -1,11 +1,12 @@
 <%- include ./partial/header.ejs %>
+<%- include ./partial/nav.ejs %>
+
   <div class="basic-info">
     <div id='editable-profile'>
-      <div>Name: <span id="fullname"><%= user.fullname %></span></div>
-      <div>Current City: <span id="city"><%= user.city %></span> </div>
+      <div>Name: <span id="full-name"><%= user.full_name %></span></div>
+      <div>Current City: <span id="city"><%= user.current_city %></span> </div>
     </div>
-    <div>Date Joined: <%= user.join_date %></div>
-
+    <div>Date Joined: <%= signupDate %></div>
     <% if (ownPage){ %>
       <button type="submit" formaction='/edit' id="edit-save">Edit Profile</button>
       <% } %>
@@ -13,8 +14,8 @@
   <div class="post-info">
     <% posts.forEach((post) => { %>
       <div id=<%= post.id %>>
-        <%= post.title %>
-        <%= post.city %>
+        <a href='/post/<%= post.id %>'><%= post.title %></a>
+        <%= post.city_id %>
         <%= post.content.substring(0, 140) %>
       </div>
     <% }) %>

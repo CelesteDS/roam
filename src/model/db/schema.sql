@@ -1,28 +1,36 @@
-DROP TABLE IF EXISTS users, posts;
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS posts CASCADE;
+DROP TABLE IF EXISTS cities CASCADE;
+DROP TABLE IF EXISTS session CASCADE;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
-  fullname VARCHAR(256) NOT NULL,
+  full_name VARCHAR(256) NOT NULL,
   email VARCHAR(256) NOT NULL UNIQUE,
   password VARCHAR(72) NOT NULL,
-  city VARCHAR(256),
-  join_date DATE DEFAULT NOW()
+  current_city VARCHAR(256),
+  joined_at DATE DEFAULT NOW()
 );
 
+CREATE TABLE cities (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(256) NOT NULL,
+  img_url VARCHAR(256) NOT NULL
+);
 
 CREATE TABLE posts (
   id SERIAL PRIMARY KEY,
   title VARCHAR(256) NOT NULL,
-  author INTEGER REFERENCES users(id),
-  city VARCHAR(256) NOT NULL,
-  content TEXT
+  author_id INTEGER REFERENCES users(id),
+  city_id INTEGER REFERENCES cities(id),
+  content TEXT,
+  date DATE DEFAULT NOW()
 );
 
-DROP TABLE IF EXISTS session;
 CREATE TABLE session (
   sid varchar NOT NULL COLLATE "default",
-	sess json NOT NULL,
-	expire timestamp(6) NOT NULL
+  sess json NOT NULL,
+  expire timestamp(6) NOT NULL
 )
 WITH (OIDS=FALSE);
 ALTER TABLE session ADD CONSTRAINT session_pkey PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;

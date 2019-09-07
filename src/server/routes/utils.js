@@ -1,16 +1,19 @@
 const bcrypt = require('bcrypt')
 
-const sessionChecker = (request, response, next) => {
-  const sid = request.sessionId
+const sessionChecker = (req, res, next) => {
+  const sid = req.sessionId
 }
 
-const loggedIn = (request, response, next) => {
-  if (!request.session.user_id) {
-    return false
+const loggedIn = (req, res, next) => {
+  if (req.session.user) {
+    res.locals.loggedIn = true
+    next()
   } else {
-    return true
+    res.locals.loggedIn = false
+    next()
   }
 }
+
 
 /**
  * hashes password using bcrypt
@@ -22,7 +25,8 @@ const hashPassword = (password) => {
   return bcrypt.hash(password, saltRounds)
 }
 
-const comparePassword = (password, hashedPassword) => {
-  return bcrypt.compare(password, hashedPassword)
+const comparePassword = (password, hashedPassword) => bcrypt.compare(password, hashedPassword)
+
+module.exports = {
+  sessionChecker, loggedIn, hashPassword, comparePassword,
 }
-module.exports = { sessionChecker, loggedIn, hashPassword, comparePassword }
